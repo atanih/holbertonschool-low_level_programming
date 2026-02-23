@@ -1,11 +1,10 @@
 #include "main.h"
 
 /**
- * cap_string - Capitalizes each word in the string
+ * cap_string - capitalizes all words of a string
  * @str: string to modify
  *
  * Return: str
- *
  */
 
 char *cap_string(char *str)
@@ -17,7 +16,8 @@ int j;
 
 while (str[i] != '\0')
 {
-if (cap_next && str[i] >= 'a' && str[i] <= 'z')
+if (cap_next &&
+str[i] >= 'a' && str[i] <= 'z')
 {
 str[i] -= 32;
 cap_next = 0;
@@ -33,6 +33,9 @@ break;
 }
 j++;
 }
+
+if (str[i] >= '0' && str[i] <= '9')
+cap_next = 0;
 
 i++;
 }
