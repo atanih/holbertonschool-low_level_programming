@@ -9,5 +9,6 @@ void _puts(char *str);
 char *_strcpy(char *dest, char *src);
 void print_rev(char *s);
 void rev_string(char *s);
+char *_strcat(char *dest, char *src);
 
 #endif
