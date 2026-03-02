@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdio.h>
 
 /**
 * _memcpy - copies memory area
@@ -15,5 +16,5 @@ unsigned int i;
 for (i = 0; i < n; i++)
 dest[i] = src[i];
 
-return (dest);
+:%s/^\s\+//return (dest);
 }
