@@ -2,23 +2,23 @@
 #include <stdio.h>
 
 /**
- * _strchr - encuentra el char in a string
- * @s: string
- * @c- char to find
- * Return: pointer to first match point or NULL
- */
+* _strchr - encuentra el char in a string
+* @s: string
+* @c- char to find
+* Return: pointer to first match point or NULL
+*/
 char *_strchr(char *s, char c)
 {
-	int i;
+int i;
 
-	for (i = 0; s[i] != '\0'; i++)
-	{
-		if (s[i] == c)
-			return (s + i);
-	}
+for (i = 0; s[i] != '\0'; i++)
+{
+if (s[i] == c)
+return (s + i);
+}
 
-	if (c == '\0')
-		return (s + i);
+if (c == '\0')
+return (s + i);
 
-	return (0);
+return (0);
 }
