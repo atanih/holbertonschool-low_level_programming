@@ -4,7 +4,8 @@
 /**
 * _strpbrk - searches a string for any set of bytes.
 *@s - string to search
-*
+*@accept: bytes to search for
+
 * Return ponter to the byte in s that matches one of the bytes in accept.
 * or NULL if such byte is found.
 */
