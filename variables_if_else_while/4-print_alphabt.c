@@ -1,22 +1,22 @@
 #include <stdio.h>
+#include <unistd.h>
 
-/** print_alphabet - prints the alphabet in lowercase follow by a new line
- * 
+/**
+ * main - prints the alphabet in lowercase, without q and e
+ *
  * Return: Always 0 (Success)
- * 
-*/
-int main (void)
+ */
+int main(void)
 {
-    char c;
+	char c;
 
-    c= 'a';
-
-    while (c <= 'z')
-    {
-        putchar(c);
-        c++;
-    }
-    putchar('\n');
-    return (0);
+	c = 'a';
+	while (c <= 'z')
+	{
+		if (c != 'e' && c != 'q')
+			putchar(c);
+		c++;
+	}
+	putchar('\n');
+	return (0);
 }
-
