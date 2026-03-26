@@ -1,29 +1,27 @@
 #include <stdio.h>
 #include <unistd.h>
 
+/**
+ * main - prints all single-digit numbers separated by ", "
+ *
+ * Return: 0
+ */
 int main(void)
 {
-    int i;
-    int j;
+	int i;
 
-    i = 0;
-    while (i <= 8)
-    {
-        j = i + 1;
-        while (j <= 9)
-        {
-            putchar('0' + i);
-            putchar('0' + j);
-            if (i != 8 || j != 9)
-            {
-                putchar(',');
-                putchar(' ');
-            }
-            j++;
-        }
-        i++;
-    }
-    putchar('\n');
-    return (0);
+	i = 0;
+	while (i <= 9)
+	{
+		putchar('0' + i);
+		if (i < 9)
+		{
+			putchar(',');
+			putchar(' ');
+		}
+		i++;
+	}
+	putchar('\n');
+	return (0);
 }
 
