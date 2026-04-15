@@ -19,42 +19,24 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 
 	if (!ht || !key || !*key)
 		return (0);
-
 	index = key_index((const unsigned char *)key, ht->size);
-	node = ht->array[index];
-
-	while (node)
-	{
+	for (node = ht->array[index]; node; node = node->next)
 		if (strcmp(node->key, key) == 0)
 		{
 			free(node->value);
 			node->value = malloc(strlen(value) + 1);
-			if (!node->value)
-				return (0);
-			strcpy(node->value, value);
-			return (1);
+			return (node->value ? (strcpy(node->value, value), 1) : 0);
 		}
-		node = node->next;
-	}
-
 	node = malloc(sizeof(hash_node_t));
 	key_copy = malloc(strlen(key) + 1);
 	value_copy = malloc(strlen(value) + 1);
-
 	if (!node || !key_copy || !value_copy)
-	{
-		free(node);
-		free(key_copy);
-		free(value_copy);
-		return (0);
-	}
-
+		return (free(node), free(key_copy), free(value_copy), 0);
 	strcpy(key_copy, key);
 	strcpy(value_copy, value);
 	node->key = key_copy;
 	node->value = value_copy;
 	node->next = ht->array[index];
 	ht->array[index] = node;
-
 	return (1);
 }
