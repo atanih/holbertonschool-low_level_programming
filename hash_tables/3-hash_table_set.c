@@ -1,4 +1,5 @@
 #include "hash_tables.h"
+#include <stdlib.h>
 #include <string.h>
 
 /**
@@ -14,16 +15,10 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
 	hash_node_t *node;
 	unsigned long int index;
-	char *value_copy;
-	char *key_copy;
+	char *value_copy, *key_copy;
 
-	if (ht == NULL || key == NULL || *key == '\0' || value == NULL)
+	if (!ht || !key || !*key)
 		return (0);
-
-	value_copy = malloc(strlen(value) + 1);
-	if (value_copy == NULL)
-		return (0);
-	strcpy(value_copy, value);
 
 	index = key_index((const unsigned char *)key, ht->size);
 	node = ht->array[index];
@@ -33,28 +28,29 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 		if (strcmp(node->key, key) == 0)
 		{
 			free(node->value);
-			node->value = value_copy;
+			node->value = malloc(strlen(value) + 1);
+			if (!node->value)
+				return (0);
+			strcpy(node->value, value);
 			return (1);
 		}
 		node = node->next;
 	}
 
 	node = malloc(sizeof(hash_node_t));
-	if (node == NULL)
-	{
-		free(value_copy);
-		return (0);
-	}
-
 	key_copy = malloc(strlen(key) + 1);
-	if (key_copy == NULL)
+	value_copy = malloc(strlen(value) + 1);
+
+	if (!node || !key_copy || !value_copy)
 	{
-		free(value_copy);
 		free(node);
+		free(key_copy);
+		free(value_copy);
 		return (0);
 	}
-	strcpy(key_copy, key);
 
+	strcpy(key_copy, key);
+	strcpy(value_copy, value);
 	node->key = key_copy;
 	node->value = value_copy;
 	node->next = ht->array[index];
