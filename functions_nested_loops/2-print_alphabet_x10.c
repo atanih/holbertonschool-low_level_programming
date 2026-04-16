@@ -11,5 +11,5 @@ int _islower(int c)
 	{
 		return(1);
 	}
-	retunr (0);
+	return (0);
 }
