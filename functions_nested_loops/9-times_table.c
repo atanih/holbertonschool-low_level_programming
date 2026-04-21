@@ -3,7 +3,6 @@
 
 /**
 * times_table - prints the 9 times table, starting with 0
-*
 * Return: void
 */
 void times_table(void)
@@ -18,7 +17,7 @@ while (i < 10)
 j = 0;
 while (j < 10)
 {
-result = i * j;
+result = i *j;
 if (j != 0)
 {
 write(1, ", ", 2);
