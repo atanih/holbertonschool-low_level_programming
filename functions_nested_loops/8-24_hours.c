@@ -23,7 +23,7 @@
   time_str[3] = '0' + (minute / 10);
   time_str[4] = '0' + (minute % 10);
   write(1, time_str, 5);
-  write(1, '\n', 1);
+  write(1, "\n", 1);
   minute++;
   }
   hour++;
