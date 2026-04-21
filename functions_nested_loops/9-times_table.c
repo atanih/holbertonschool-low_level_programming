@@ -19,20 +19,20 @@ while (j < 10)
 result = i * j;
 if (j != 0)
 {
-write(1, “, “, 2);
+write(1, ", ", 2);
 if (result < 10)
-write(1, “ “, 1);
+write(1, " ", 1);
 }
 if (result < 10)
-_putchar(‘0’ + result);
+_putchar('0' + result);
 else
 {
-_putchar(‘0’ + (result / 10));
-_putchar(‘0’ + (result % 10));
+_putchar('0' + (result / 10));
+_putchar('0' + (result % 10));
 }
 j++;
 }
-_putchar(’\n’);
+_putchar('\n');
 i++;
 }
 }
