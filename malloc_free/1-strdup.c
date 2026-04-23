@@ -14,7 +14,10 @@ unsigned int len, i;
 if (str == NULL)
 return (NULL);
 
-len = strlen(str);
+len = 0;
+while (str[len] != '\0')
+len++;
+
 dup = malloc((len + 1) * sizeof(char));
 
 if (dup == NULL)
