@@ -1,4 +1,4 @@
-#include "function_pointers.h"
+#include "3-calc.h"
 
 /**
 * op_add - Adds two integers
@@ -50,12 +50,11 @@ if (b == 0)
 printf("Error\n");
 exit(100);
 }
-
 return (a / b);
 }
 
 /**
-* op_mod - Gets the modulus of two integers
+* op_mod - Returns remainder of division
 * @a: First integer
 * @b: Second integer
 *
@@ -68,6 +67,5 @@ if (b == 0)
 printf("Error\n");
 exit(100);
 }
-
 return (a % b);
 }

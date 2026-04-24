@@ -1,12 +1,11 @@
-#include "function_pointers.h"
+#include "3-calc.h"
 
 /**
 * main - Entry point
 * @argc: Argument count
 * @argv: Argument vector
 *
-* Return: 0 on success, 1 if wrong number of args
-*         2 if operator is invalid
+* Return: 0 on success, 98 on wrong args, 99 on invalid op, 100 on division error
 */
 int main(int argc, char *argv[])
 {
@@ -17,7 +16,7 @@ int (*func)(int, int);
 if (argc != 4)
 {
 printf("Usage: %s <number> <operator> <number>\n", argv[0]);
-exit(1);
+exit(98);
 }
 
 a = atoi(argv[1]);
@@ -29,7 +28,7 @@ func = get_op_func(op);
 if (func == NULL)
 {
 printf("Error\n");
-exit(2);
+exit(99);
 }
 
 printf("%d\n", func(a, b));
