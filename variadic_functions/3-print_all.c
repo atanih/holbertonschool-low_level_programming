@@ -1,68 +1,52 @@
 #include "variadic_functions.h"
-#include <stdarg.h>
 #include <stdio.h>
+#include <stdarg.h>
 
 /**
-* check_next - Checks if there's a valid format character after position i
-* @format: The format string
-* @i: Current position
+* print_all - prints anything
+* @format: list of types of arguments passed to the function
 *
-* Return: 1 if valid char found, 0 otherwise
+* Description: Prints values according to format specifiers:
+* c: char
+* i: integer
+* f: float
+* s: char * (prints (nil) if NULL)
+* Any other character is ignored
 */
-int check_next(const char *format, int i)
-{
-i++;
-while (format[i])
-{
-if (format[i] == 'c' || format[i] == 'i'
-|| format[i] == 'f' || format[i] == 's')
-return (1);
-i++;
-}
-return (0);
-}
-
-/**
-* print_all - Prints anything
-* @format: A list of types of arguments passed to the function
-*
-* Return: Nothing
-*/
-void print_all(const char *format, ...)
+void print_all(const char * const format, ...)
 {
 va_list args;
-int i;
+int i, first;
 char *str;
 
 va_start(args, format);
 i = 0;
+first = 0;
 while (format && format[i])
 {
+if ((first != 0) && (format[i] == 'c' || format[i] == 'i'
+|| format[i] == 'f' || format[i] == 's'))
+printf(", ");
 switch (format[i])
 {
 case 'c':
 printf("%c", va_arg(args, int));
-if (check_next(format, i))
-printf(", ");
+first = 1;
 break;
 case 'i':
 printf("%d", va_arg(args, int));
-if (check_next(format, i))
-printf(", ");
+first = 1;
 break;
 case 'f':
 printf("%f", va_arg(args, double));
-if (check_next(format, i))
-printf(", ");
+first = 1;
 break;
 case 's':
 str = va_arg(args, char *);
-if (str == NULL)
-printf("(nil)");
-else
+if (str)
 printf("%s", str);
-if (check_next(format, i))
-printf(", ");
+printf("(nil)" + 5 * (str != NULL));
+first = 1;
 break;
 }
 i++;
