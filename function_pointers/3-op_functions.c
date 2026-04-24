@@ -1,27 +1,73 @@
-#ifndef CALC_H
-#define CALC_H
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "function_pointers.h"
 
 /**
-* struct op - Struct op
+* op_add - Adds two integers
+* @a: First integer
+* @b: Second integer
 *
-* @op: The operator
-* @f: The function associated
+* Return: Sum of a and b
 */
-typedef struct op
+int op_add(int a, int b)
 {
-char *op;
-int (*f)(int a, int b);
-} op_t;
+return (a + b);
+}
 
-int op_add(int a, int b);
-int op_sub(int a, int b);
-int op_mul(int a, int b);
-int op_div(int a, int b);
-int op_mod(int a, int b);
-int (*get_op_func(char *s))(int, int);
+/**
+* op_sub - Subtracts two integers
+* @a: First integer
+* @b: Second integer
+*
+* Return: Difference of a and b
+*/
+int op_sub(int a, int b)
+{
+return (a - b);
+}
 
-#endif
+/**
+* op_mul - Multiplies two integers
+* @a: First integer
+* @b: Second integer
+*
+* Return: Product of a and b
+*/
+int op_mul(int a, int b)
+{
+return (a * b);
+}
+
+/**
+* op_div - Divides two integers
+* @a: First integer
+* @b: Second integer
+*
+* Return: Result of a divided by b
+*/
+int op_div(int a, int b)
+{
+if (b == 0)
+{
+printf("Error\n");
+exit(100);
+}
+
+return (a / b);
+}
+
+/**
+* op_mod - Gets the modulus of two integers
+* @a: First integer
+* @b: Second integer
+*
+* Return: Remainder of a divided by b
+*/
+int op_mod(int a, int b)
+{
+if (b == 0)
+{
+printf("Error\n");
+exit(100);
+}
+
+return (a % b);
+}
