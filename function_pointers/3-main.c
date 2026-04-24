@@ -1,37 +1,29 @@
 #include "3-calc.h"
 
 /**
-* main - Entry point
-* @argc: Argument count
-* @argv: Argument vector
+* get_op_func - Selects correct operation function
+* @s: The operator passed as argument
 *
-* Return: 0 on success, 98 on wrong args, 99 on invalid op, 100 on division error
+* Return: Pointer to the function or NULL if invalid
 */
-int main(int argc, char *argv[])
+int (*get_op_func(char *s))(int, int)
 {
-int a, b;
-char *op;
-int (*func)(int, int);
+op_t ops[] = {
+{"+", op_add},
+{"-", op_sub},
+{"*", op_mul},
+{"/", op_div},
+{"%", op_mod},
+{NULL, NULL}
+};
+int i;
 
-if (argc != 4)
+i = 0;
+while (ops[i].op != NULL)
 {
-printf("Usage: %s <number> <operator> <number>\n", argv[0]);
-exit(98);
+if (strcmp(ops[i].op, s) == 0)
+return (ops[i].f);
+i++;
 }
-
-a = atoi(argv[1]);
-op = argv[2];
-b = atoi(argv[3]);
-
-func = get_op_func(op);
-
-if (func == NULL)
-{
-printf("Error\n");
-exit(99);
-}
-
-printf("%d\n", func(a, b));
-
-return (0);
+return (NULL);
 }
