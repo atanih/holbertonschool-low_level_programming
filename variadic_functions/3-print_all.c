@@ -3,6 +3,26 @@
 #include <stdio.h>
 
 /**
+* check_next - Checks if there's a valid format character after position i
+* @format: The format string
+* @i: Current position
+*
+* Return: 1 if valid char found, 0 otherwise
+*/
+int check_next(const char *format, int i)
+{
+i++;
+while (format[i])
+{
+if (format[i] == 'c' || format[i] == 'i'
+|| format[i] == 'f' || format[i] == 's')
+return (1);
+i++;
+}
+return (0);
+}
+
+/**
 * print_all - Prints anything
 * @format: A list of types of arguments passed to the function
 *
@@ -12,7 +32,6 @@ void print_all(const char *format, ...)
 {
 va_list args;
 int i;
-int j;
 char *str;
 
 va_start(args, format);
@@ -23,40 +42,24 @@ switch (format[i])
 {
 case 'c':
 printf("%c", va_arg(args, int));
-j = i + 1;
-while (format[j] && format[j] != 'c' && format[j] != 'i'
-&& format[j] != 'f' && format[j] != 's')
-j++;
-if (format[j])
+if (check_next(format, i))
 printf(", ");
 break;
 case 'i':
 printf("%d", va_arg(args, int));
-j = i + 1;
-while (format[j] && format[j] != 'c' && format[j] != 'i'
-&& format[j] != 'f' && format[j] != 's')
-j++;
-if (format[j])
+if (check_next(format, i))
 printf(", ");
 break;
 case 'f':
 printf("%f", va_arg(args, double));
-j = i + 1;
-while (format[j] && format[j] != 'c' && format[j] != 'i'
-&& format[j] != 'f' && format[j] != 's')
-j++;
-if (format[j])
+if (check_next(format, i))
 printf(", ");
 break;
 case 's':
 str = va_arg(args, char *);
 str = (str == NULL) ? "(nil)" : str;
 printf("%s", str);
-j = i + 1;
-while (format[j] && format[j] != 'c' && format[j] != 'i'
-&& format[j] != 'f' && format[j] != 's')
-j++;
-if (format[j])
+if (check_next(format, i))
 printf(", ");
 break;
 }
