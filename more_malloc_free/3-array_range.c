@@ -5,9 +5,8 @@
 * @min: Minimum value
 * @max: Maximum value
 *
-* Return: Pointer to newly allocated array containing all integers from min to max
-*         NULL if min > max
-*         NULL if memory allocation fails
+* Return: Pointer to newly allocated array with all integers from min to max
+*         NULL if min > max or malloc fails
 */
 int *array_range(int min, int max)
 {
