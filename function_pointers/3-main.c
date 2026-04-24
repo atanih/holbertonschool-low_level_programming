@@ -15,7 +15,7 @@ int (*func)(int, int);
 
 if (argc != 4)
 {
-printf("Usage: %s <number> <operator> <number>\n", argv[0]);
+printf("Error\n");
 exit(98);
 }
 
