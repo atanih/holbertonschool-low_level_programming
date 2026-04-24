@@ -5,7 +5,8 @@
 * @argc: Argument count
 * @argv: Argument vector
 *
-* Return: 0 on success, 98 on wrong args, 99 on invalid op, 100 on division error
+* Return: 0 on success, 98 on wrong args, 99 on invalid op,
+*         100 on division error
 */
 int main(int argc, char *argv[])
 {
