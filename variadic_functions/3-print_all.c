@@ -57,7 +57,9 @@ printf(", ");
 break;
 case 's':
 str = va_arg(args, char *);
-str = (str == NULL) ? "(nil)" : str;
+if (str == NULL)
+printf("(nil)");
+else
 printf("%s", str);
 if (check_next(format, i))
 printf(", ");
