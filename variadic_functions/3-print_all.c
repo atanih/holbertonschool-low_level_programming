@@ -37,7 +37,7 @@ printf("%s", str);
 break;
 }
 if (format[i + 1] != '\0')
-printf(" ");
+printf(", ");
 i++;
 }
 va_end(args);
