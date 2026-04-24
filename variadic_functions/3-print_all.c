@@ -23,25 +23,43 @@ switch (format[i])
 {
 case 'c':
 printf("%c", va_arg(args, int));
-break;
-case 'i':
-printf("%d", va_arg(args, int));
-break;
-case 'f':
-printf("%f", va_arg(args, double));
-break;
-case 's':
-str = va_arg(args, char *);
-str = (str == NULL) ? "(nil)" : str;
-printf("%s", str);
-break;
-}
 j = i + 1;
 while (format[j] && format[j] != 'c' && format[j] != 'i'
 && format[j] != 'f' && format[j] != 's')
 j++;
 if (format[j])
 printf(", ");
+break;
+case 'i':
+printf("%d", va_arg(args, int));
+j = i + 1;
+while (format[j] && format[j] != 'c' && format[j] != 'i'
+&& format[j] != 'f' && format[j] != 's')
+j++;
+if (format[j])
+printf(", ");
+break;
+case 'f':
+printf("%f", va_arg(args, double));
+j = i + 1;
+while (format[j] && format[j] != 'c' && format[j] != 'i'
+&& format[j] != 'f' && format[j] != 's')
+j++;
+if (format[j])
+printf(", ");
+break;
+case 's':
+str = va_arg(args, char *);
+str = (str == NULL) ? "(nil)" : str;
+printf("%s", str);
+j = i + 1;
+while (format[j] && format[j] != 'c' && format[j] != 'i'
+&& format[j] != 'f' && format[j] != 's')
+j++;
+if (format[j])
+printf(", ");
+break;
+}
 i++;
 }
 va_end(args);
