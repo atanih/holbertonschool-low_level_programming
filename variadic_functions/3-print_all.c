@@ -41,4 +41,5 @@ printf(" ");
 i++;
 }
 va_end(args);
-
+printf("\n");
+}
