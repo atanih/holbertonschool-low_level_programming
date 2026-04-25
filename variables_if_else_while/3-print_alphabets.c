@@ -1,4 +1,4 @@
-#include <unistd.h>
+#include <stdio.h>
 
 /**
 * main - Prints the alphabet in lowercase then uppercase
@@ -10,9 +10,9 @@ int main(void)
 char c;
 
 for (c = 'a'; c <= 'z'; c++)
-_putchar(c);
+putchar(c);
 for (c = 'A'; c <= 'Z'; c++)
-_putchar(c);
-_putchar('\n');
+putchar(c);
+putchar('\n');
 return (0);
 }
