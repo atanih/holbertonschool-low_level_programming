@@ -1,43 +1,35 @@
 #include "main.h"
 
 /**
-* cap_string - capitalizes all words of a string
-* @str: string to modify
+* cap_string - Capitalizes all words of a string
+* @str: The string to modify
 *
-* Return: str
+* Return: Pointer to the modified string
 */
 char *cap_string(char *str)
 {
-int i = 0;
-int cap_next = 1;
-char sep[] = " \t\n,;.!?\"(){}";
-int j;
+int i;
+int cap;
 
+cap = 1;
+i = 0;
 while (str[i] != '\0')
 {
-if (cap_next && str[i] >= 'a' && str[i] <= 'z')
+if (str[i] == ' ' || str[i] == '\t' || str[i] == '\n' ||
+str[i] == ',' || str[i] == ';' || str[i] == '.' ||
+str[i] == '!' || str[i] == '?' || str[i] == '"' ||
+str[i] == '(' || str[i] == ')' || str[i] == '{' ||
+str[i] == '}')
 {
-str[i] -= 32;
-cap_next = 0;
+cap = 1;
 }
-
-j = 0;
-while (sep[j] != '\0')
+else
 {
-if (str[i] == sep[j])
-{
-cap_next = 1;
-break;
+if (cap == 1 && str[i] >= 'a' && str[i] <= 'z')
+str[i] = str[i] - 32;
+cap = 0;
 }
-j++;
-}
-
-/* evita capitalizar después de números */
-if (str[i] >= '0' && str[i] <= '9')
-cap_next = 0;
-
 i++;
 }
-
 return (str);
 }
